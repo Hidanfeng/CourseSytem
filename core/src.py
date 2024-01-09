@@ -26,4 +26,6 @@ def run():
         ''')
         choice =  input('请输入功能编号').strip()
         if choice in dunc_dic:
-            dunc_dic.get(choice)
+            dunc_dic.get(choice)()
+
+
