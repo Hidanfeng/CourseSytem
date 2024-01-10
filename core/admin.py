@@ -52,13 +52,13 @@ def creat_school():
     else:
         print(mesg)
 
-# @common.auth('admin')
+@common.auth('admin')
 def create_course():
     while True:
         flag, list_or_mesg = common_interface.get_all_school_interface()
         if flag:
             for index, i in enumerate(list_or_mesg):
-                print(f'编号{index}  学校{i+1} ')
+                print(f'编号{index}  学校{i} ')
             choice = input('请输入学校编号').strip()
             if not choice.isdigit():
                 print('请输入数字')
@@ -68,9 +68,30 @@ def create_course():
                 print('请输入正确编号')
                 continue
             school_name = list_or_mesg[choice]
+            course_name = input('请输入要创建的课程名称：').strip()
+            flag ,msg = admin_interface.create_course_interface(
+                school_name,course_name,uerinfo['user']
+            )
+            if flag:
+                print(msg)
+            else:
+                print(msg)
 
         else:
             print(list_or_mesg)
+
+@common.auth('admin')
+def create_teacher():
+    while True:
+        teacher_name = input('请输入学生的名字>>')
+        # student_name = input('请输入学生的名字>>')
+        flag,msg = admin_interface.create_teacher_interface(teacher_name,uerinfo['user'])
+        if flag:
+            print(msg)
+        else:
+            print(msg)
+
+
 
 
 
@@ -81,7 +102,8 @@ dunc_dic={
     '1':register,
     '2':login,
     '3':creat_school,
-    '4':create_course
+    '4':create_course,
+    '5':create_teacher,
 }
 def admin_view():
     while True:
@@ -91,6 +113,7 @@ def admin_view():
                     2、登录
                     3、创建学校
                     4、创建课程
+                    5、创建老师
                 ==============end===========
                 ''')
         choice = input('请输入功能编号').strip()

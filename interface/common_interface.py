@@ -15,7 +15,7 @@ def get_all_school_interface():
 
 
 
-
-# if __name__ == '__main__':
-#     a, b = get_all_school_interface()
-#     print(b)
+#
+if __name__ == '__main__':
+    a, b = get_all_school_interface()
+    print(a,b)
